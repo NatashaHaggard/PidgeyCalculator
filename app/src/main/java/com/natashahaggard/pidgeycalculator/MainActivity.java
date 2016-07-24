@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,8 +18,15 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Spinner spinner;
-    private TextView pokemonTextView;
-    private TextView candiesTextView;
+
+    // Declare variables
+    EditText howManyPokemon; // # of pokemon from user input
+    EditText howManyCandies; // # of candies from user input
+    TextView evolutionsResult; // Display how many evolutions are possible
+    Button button_calculate; // Calculate button
+    Button button_reset; // Reset button
+
+    int numOfPokemon, numOfCandies, numOfEvolutions;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,23 +35,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         spinner = (Spinner) findViewById(R.id.spinner);
 
+        // Read the values entered in the Text Views using an id set in XML code
+        howManyPokemon = (EditText)findViewById(R.id.pokemonEditText);
+        howManyCandies = (EditText)findViewById(R.id.candiesEditText);
+        evolutionsResult = (TextView)findViewById(R.id.textView_results) ;
+        button_calculate = (Button)findViewById(R.id.button_calculate);
+
+        // When the calculate button has been clicked, calculate and display the values
+        button_calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numOfPokemon = Integer.parseInt(howManyPokemon.getText().toString());
+                numOfCandies = Integer.parseInt(howManyCandies.getText().toString());
+                numOfEvolutions = numOfPokemon + numOfCandies;
+                evolutionsResult.setText(Integer.toString(numOfEvolutions));
+            }
+        });
+
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.pokemon_12common,android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        // get references to programmatically manipulated TextViews
-       pokemonTextView = (TextView) findViewById(R.id.pokemonTextView);
-       candiesTextView = (TextView) findViewById(R.id.candiesTextView);
-
-        // set pokemonEditText's Text Watcher
-        EditText pokemonEditText =
-                (EditText) findViewById(R.id.pokemonEditText);
-      // pokemonEditText.addTextChangedListener(pokemonEditTextWatcher);
-
-        // set candiesEditText's Text Watcher
-        EditText candiesEditText =
-                (EditText) findViewById(R.id.candiesEditText);
-    //   candiesEditText.addTextChangedListener(candiesEditTextWatcher);
     }
 
     @Override

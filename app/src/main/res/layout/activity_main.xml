@@ -75,7 +75,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp">
         <Button
@@ -92,6 +92,23 @@
             android:id="@+id/button_reset"
             android:padding="20dp"
             android:layout_marginLeft="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="63dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/id_results"
+            android:id="@+id/textView_results"
+            android:paddingBottom="20dp" />
     </LinearLayout>
 
 

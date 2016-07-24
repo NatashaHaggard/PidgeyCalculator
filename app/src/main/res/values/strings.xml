@@ -8,6 +8,7 @@
     <string name="id_category1">12 Candies (Common)</string>
     <string name="button_calculate">Calculate</string>
     <string name="button_reset">Reset</string>
+    <string name="id_results">Results:</string>
     <string-array name="categories">
         <item>12 Candies (Common)</item>
         <item>25 Candies (Common)</item>
