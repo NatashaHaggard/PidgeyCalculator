@@ -46,10 +46,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         button_calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numOfPokemon = Integer.parseInt(howManyPokemon.getText().toString());
-                numOfCandies = Integer.parseInt(howManyCandies.getText().toString());
-                numOfEvolutions = numOfPokemon + numOfCandies;
-                evolutionsResult.setText(Integer.toString(numOfEvolutions));
+                calculate();
+                displayResults();
             }
         });
 
@@ -67,6 +65,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+    }
+
+    // Calculate function
+    private void calculate(){
+        try {
+            numOfPokemon = Integer.parseInt(howManyPokemon.getText().toString());
+            numOfCandies = Integer.parseInt(howManyCandies.getText().toString());
+        }
+        catch(NumberFormatException e){// if it's empty or non-numeric
+            numOfPokemon = 0;
+            numOfCandies = 0;
+        }
+        numOfEvolutions = numOfPokemon + numOfCandies;
+    }
+
+    // Display results function
+    private void displayResults(){
+        evolutionsResult.setText(Integer.toString(numOfEvolutions));
     }
 
     @Override
