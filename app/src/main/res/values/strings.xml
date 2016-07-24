@@ -2,9 +2,31 @@
 <resources>
     <string name="app_name">Pidgey Calculator</string>
     <string name="action_settings">Settings</string>
+    <string name="id_select">Select a Pokemon:</string>
+    <string name="id_numCandies"># of Candies:</string>
+    <string name="id_numPokemon"># of Pokemon:</string>
+    <string name="calculate">Calculate</string>
     <string-array name="pokemon">
         <item>Pidgey</item>
         <item>Weedle</item>
         <item>Caterpie</item>
+        <item>Rattata</item>
+        <item>Eevie</item>
+        <item>Oddish</item>
+        <item>Zubat</item>
+        <item>Drowzee</item>
+        <item>Spearow</item>
+        <item>Bulbasaur</item>
+        <item>Charmander</item>
+        <item>Squirtle</item>
+        <item>Nidoran Male</item>
+        <item>Nidoran Female</item>
+        <item>Poliwag</item>
+        <item>Abra</item>
+        <item>Machop</item>
+        <item>Bellsprout</item>
+        <item>Geodude</item>
+        <item>Ghastly</item>
+        <item>Dratini</item>
     </string-array>
 </resources>
