@@ -8,9 +8,9 @@
     android:padding="16dp">
 
     <TableLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
 
         <TableRow
             android:layout_width="fill_parent"
@@ -20,7 +20,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/id_select"
-                android:id="@+id/selectPokemon" />
+                android:id="@+id/selectPokemon"
+                android:paddingBottom="20dp" />
         </TableRow>
 
         <TableRow>
@@ -29,7 +30,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/spinner"
-                android:spinnerMode="dropdown" />
+                android:spinnerMode="dropdown"
+                android:paddingBottom="30dp" />
         </TableRow>
 
         <TableRow>
@@ -53,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/id_numCandies"
-                android:id="@+id/candiesTextView" />
+                android:id="@+id/candiesTextView"
+                android:paddingBottom="30dp" />
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,7 +67,7 @@
     </TableLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
@@ -72,8 +75,17 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/calculate"
-            android:id="@+id/button" />
+            android:text="@string/button_calculate"
+            android:id="@+id/button_calculate"
+            android:padding="20dp"
+            android:layout_marginRight="20dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_reset"
+            android:id="@+id/button_reset"
+            android:padding="20dp"
+            android:layout_marginLeft="20dp" />
     </LinearLayout>
 
 

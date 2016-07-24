@@ -5,7 +5,8 @@
     <string name="id_select">Select a Pokemon:</string>
     <string name="id_numCandies"># of Candies:</string>
     <string name="id_numPokemon"># of Pokemon:</string>
-    <string name="calculate">Calculate</string>
+    <string name="button_calculate">Calculate</string>
+    <string name="button_reset">Reset</string>
     <string-array name="pokemon">
         <item>Pidgey</item>
         <item>Weedle</item>
