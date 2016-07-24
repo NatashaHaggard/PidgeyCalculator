@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         howManyCandies = (EditText)findViewById(R.id.candiesEditText);
         evolutionsResult = (TextView)findViewById(R.id.textView_results) ;
         button_calculate = (Button)findViewById(R.id.button_calculate);
+        button_reset = (Button)findViewById(R.id.button_reset);
 
         // When the calculate button has been clicked, calculate and display the values
         button_calculate.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +50,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 numOfCandies = Integer.parseInt(howManyCandies.getText().toString());
                 numOfEvolutions = numOfPokemon + numOfCandies;
                 evolutionsResult.setText(Integer.toString(numOfEvolutions));
+            }
+        });
+
+        // Clear all text fields
+        button_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view2){
+                howManyPokemon.setText("");
+                howManyCandies.setText("");
+                evolutionsResult.setText("");
             }
         });
 
