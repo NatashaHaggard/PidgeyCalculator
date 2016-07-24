@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,9 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class MainActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
     Spinner spinner;
+    private TextView pokemonTextView;
+    private TextView candiesTextView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,20 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.pokemon,android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+        // get references to programmatically manipulated TextViews
+       pokemonTextView = (TextView) findViewById(R.id.pokemonTextView);
+       candiesTextView = (TextView) findViewById(R.id.candiesTextView);
+
+        // set pokemonEditText's Text Watcher
+        EditText pokemonEditText =
+                (EditText) findViewById(R.id.pokemonEditText);
+      // pokemonEditText.addTextChangedListener(pokemonEditTextWatcher);
+
+        // set candiesEditText's Text Watcher
+        EditText candiesEditText =
+                (EditText) findViewById(R.id.candiesEditText);
+    //   candiesEditText.addTextChangedListener(candiesEditTextWatcher);
     }
 
     @Override
@@ -38,9 +56,4 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     public void onNothingSelected(AdapterView<?> adapterView){
     }
 
-     /*
-     step 1 create the data source
-     step 2 define the appearance layout file through which the adapter will put data inside the spinner
-     step 3 define what to do when the user clicks on the spinner using the OnItemsSelectedListener
-      */
 }

@@ -27,7 +27,9 @@
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner"/>
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/spinner"
+                android:spinnerMode="dropdown" />
         </TableRow>
 
         <TableRow>
@@ -36,13 +38,13 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/id_numPokemon"
-                android:id="@+id/textView2" />
+                android:id="@+id/pokemonTextView" />
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/numPokemonInput" />
+                android:id="@+id/pokemonEditText" />
         </TableRow>
 
         <TableRow>
@@ -51,13 +53,13 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/id_numCandies"
-                android:id="@+id/numCandies" />
+                android:id="@+id/candiesTextView" />
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/numCandiesInput" />
+                android:id="@+id/candiesEditText" />
         </TableRow>
     </TableLayout>
 
