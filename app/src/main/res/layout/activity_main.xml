@@ -1,115 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
     tools:context=".MainActivity"
-    android:padding="16dp">
-
-    <TableLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:fillViewport="false">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_height="wrap_content">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-            <TextView
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/id_select"
+                    android:id="@+id/selectPokemon"
+                    android:paddingBottom="20dp" />
+            </TableRow>
+
+            <TableRow>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/spinner"
+                    android:spinnerMode="dropdown"
+                    android:paddingBottom="30dp" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/id_numPokemon"
+                    android:id="@+id/pokemonTextView" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/pokemonEditText" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/id_numCandies"
+                    android:id="@+id/candiesTextView"
+                    android:paddingBottom="30dp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/candiesEditText" />
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp">
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/id_select"
-                android:id="@+id/selectPokemon"
-                android:paddingBottom="20dp" />
-        </TableRow>
-
-        <TableRow>
-            <Spinner
+                android:text="@string/button_calculate"
+                android:id="@+id/button_calculate"
+                android:padding="20dp"
+                android:layout_marginRight="20dp" />
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/spinner"
-                android:spinnerMode="dropdown"
-                android:paddingBottom="30dp" />
-        </TableRow>
+                android:text="@string/button_reset"
+                android:id="@+id/button_reset"
+                android:padding="20dp"
+                android:layout_marginLeft="20dp" />
 
-        <TableRow>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/id_numPokemon"
-                android:id="@+id/pokemonTextView" />
-            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_gravity="center_horizontal"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/pokemonEditText" />
-        </TableRow>
+                android:id="@+id/textView_results" />
+        </LinearLayout>
 
-        <TableRow>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/id_numCandies"
-                android:id="@+id/candiesTextView"
-                android:paddingBottom="30dp" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_gravity="center_horizontal"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/candiesEditText" />
-        </TableRow>
-    </TableLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_calculate"
-            android:id="@+id/button_calculate"
-            android:padding="20dp"
-            android:layout_marginRight="20dp" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_reset"
-            android:id="@+id/button_reset"
-            android:padding="20dp"
-            android:layout_marginLeft="20dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="63dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/id_results"
-            android:id="@+id/textView_results"
-            android:paddingBottom="20dp" />
-    </LinearLayout>
 
 
 </LinearLayout>
+</ScrollView>
