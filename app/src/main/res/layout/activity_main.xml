@@ -32,6 +32,7 @@
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/spinner"
                     android:spinnerMode="dropdown"
@@ -87,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_calculate"
                 android:id="@+id/button_calculate"
+                android:onClick="showAlert"
                 android:padding="20dp"
                 android:layout_marginRight="20dp" />
             <Button
@@ -98,19 +100,6 @@
                 android:layout_marginLeft="20dp" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/textView_results" />
-        </LinearLayout>
-
-
 
 </LinearLayout>
 </ScrollView>

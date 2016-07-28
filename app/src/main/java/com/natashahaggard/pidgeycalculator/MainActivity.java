@@ -1,9 +1,8 @@
 package com.natashahaggard.pidgeycalculator;
 
-import java.util.ArrayList;
-import java.util.List;
-import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -38,18 +36,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Read the values entered in the Text Views using an id set in XML code
         howManyPokemon = (EditText)findViewById(R.id.pokemonEditText);
         howManyCandies = (EditText)findViewById(R.id.candiesEditText);
-        evolutionsResult = (TextView)findViewById(R.id.textView_results) ;
         button_calculate = (Button)findViewById(R.id.button_calculate);
         button_reset = (Button)findViewById(R.id.button_reset);
-
-        // When the calculate button has been clicked, calculate and display the values
-        button_calculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                calculate();
-                displayResults();
-            }
-        });
 
         // Clear all text fields
         button_reset.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View view2){
                 howManyPokemon.setText("");
                 howManyCandies.setText("");
-                evolutionsResult.setText("");
             }
         });
 
@@ -80,11 +67,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         numOfEvolutions = numOfPokemon + numOfCandies;
     }
 
-    // Display results function
-    private void displayResults(){
-        evolutionsResult.setText(Integer.toString(numOfEvolutions));
-    }
-
+    // You selected such-and-such Pokemon message
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
         TextView myText= (TextView)view;
@@ -96,4 +79,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> adapterView){
     }
 
+    // Display a dialog with calculation results
+    public void showAlert(View view) {
+        AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
+        calculate();
+        myAlert.setMessage("Number of Evolutions is " + numOfEvolutions)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create();
+        myAlert.show();
+    }
 }
