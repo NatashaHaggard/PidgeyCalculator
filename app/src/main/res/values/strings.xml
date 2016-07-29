@@ -9,15 +9,7 @@
     <string name="button_calculate">Calculate</string>
     <string name="button_reset">Reset</string>
     <string name="id_results">Results:</string>
-    <string-array name="categories">
-        <item>12 Candies (Common)</item>
-        <item>25 Candies (Common)</item>
-        <item>50 Candies (Common)</item>
-        <item>25 Candies</item>
-        <item>50 Candies</item>
-        <item>100 Candies</item>
-        <item>400 Candies</item>
-    </string-array>
+
     <string-array name="pokemon_12common">
         <item>12 Candies (Common) - Pidgey</item>
         <item>12 Candies (Common) - Weedle</item>
