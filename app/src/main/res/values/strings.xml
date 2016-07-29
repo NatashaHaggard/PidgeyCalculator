@@ -14,84 +14,79 @@
         <item>12 Candies (Common) - Pidgey</item>
         <item>12 Candies (Common) - Weedle</item>
         <item>12 Candies (Common) - Caterpie</item>
-    </string-array>
-    <string-array name="pokemon_25common">
-        <item>25 Candies (Common)- Rattata</item>
-        <item>25 Candies (Common)- Eevee</item>
-        <item>25 Candies (Common)- Oddish</item>
-    </string-array>
-    <string-array name="pokemon_50common">
-        <item>Zubat</item>
-        <item>Drowzee</item>
-        <item>Spearow</item>
-    </string-array>
-    <string-array name="pokemon_25">
-        <item>Bulbasaur</item>
-        <item>Charmander</item>
-        <item>Squirtle</item>
-        <item>Nidoran ♀</item>
-        <item>Nidoran ♂</item>
-        <item>Poliwag</item>
-        <item>Abra</item>
-        <item>Machop</item>
-        <item>Bellsprout</item>
-        <item>Geodude</item>
-        <item>Gastly</item>
-        <item>Dratini</item>
-    </string-array>
-    <string-array name="pokemon_50">
-        <item>Metapod</item>
-        <item>Kakuna</item>
-        <item>Pidgeotto</item>
-        <item>Ekans</item>
-        <item>Pikachu</item>
-        <item>Sandshrew</item>
-        <item>Clefairy</item>
-        <item>Vulpix</item>
-        <item>Jigglypuff</item>
-        <item>Paras</item>
-        <item>Venonat</item>
-        <item>Diglett</item>
-        <item>Meowth</item>
-        <item>Psyduck</item>
-        <item>Mankey</item>
-        <item>Growlithe</item>
-        <item>Tentacool</item>
-        <item>Ponyta</item>
-        <item>Slowpoke</item>
-        <item>Magnemite</item>
-        <item>Doduo</item>
-        <item>Seel</item>
-        <item>Grimer</item>
-        <item>Shellder</item>
-        <item>Krabby</item>
-        <item>Voltorb</item>
-        <item>Exeggcute</item>
-        <item>Cubone</item>
-        <item>Koffing</item>
-        <item>Rhyhorn</item>
-        <item>Horsea</item>
-        <item>Goldeen</item>
-        <item>Staryu</item>
-        <item>Omanyte</item>
-        <item>Kabuto</item>
-    </string-array>
-    <string-array name="pokemon_100">
-        <item>Ivysaur</item>
-        <item>Charmeleon</item>
-        <item>Wartortle</item>
-        <item>Nidorina</item>
-        <item>Nidorino</item>
-        <item>Gloom</item>
-        <item>Poliwhirl</item>
-        <item>Kadabra</item>
-        <item>Machoke</item>
-        <item>Weepinbell</item>
-        <item>Graveler</item>
-        <item>Haunter</item>
-        <item>Dragonair</item>
-    </string-array>
-    <string-array name="pokemon_400">
-        <item>Magikarp</item>
+
+        <item>25 Candies (Common) - Rattata</item>
+        <item>25 Candies (Common) - Eevee</item>
+        <item>25 Candies (Common) - Oddish</item>
+
+        <item>50 Candies (Common) - Zubat</item>
+        <item>50 Candies (Common) - Drowzee</item>
+        <item>50 Candies (Common) - Spearow</item>
+
+        <item>25 Candies - Bulbasaur</item>
+        <item>25 Candies - Charmander</item>
+        <item>25 Candies - Squirtle</item>
+        <item>25 Candies - Nidoran ♀</item>
+        <item>25 Candies - Nidoran ♂</item>
+        <item>25 Candies - Poliwag</item>
+        <item>25 Candies - Abra</item>
+        <item>25 Candies - Machop</item>
+        <item>25 Candies - Bellsprout</item>
+        <item>25 Candies - Geodude</item>
+        <item>25 Candies - Gastly</item>
+        <item>25 Candies - Dratini</item>
+
+        <item>50 Candies - Metapod</item>
+        <item>50 Candies - Kakuna</item>
+        <item>50 Candies - Pidgeotto</item>
+        <item>50 Candies - Ekans</item>
+        <item>50 Candies - Pikachu</item>
+        <item>50 Candies - Sandshrew</item>
+        <item>50 Candies - Clefairy</item>
+        <item>50 Candies - Vulpix</item>
+        <item>50 Candies - Jigglypuff</item>
+        <item>50 Candies - Paras</item>
+        <item>50 Candies - Venonat</item>
+        <item>50 Candies - Diglett</item>
+        <item>50 Candies - Meowth</item>
+        <item>50 Candies - Psyduck</item>
+        <item>50 Candies - Mankey</item>
+        <item>50 Candies - Growlithe</item>
+        <item>50 Candies - Tentacool</item>
+        <item>50 Candies - Ponyta</item>
+        <item>50 Candies - Slowpoke</item>
+        <item>50 Candies - Magnemite</item>
+        <item>50 Candies - Doduo</item>
+        <item>50 Candies - Seel</item>
+        <item>50 Candies - Grimer</item>
+        <item>50 Candies - Shellder</item>
+        <item>50 Candies - Krabby</item>
+        <item>50 Candies - Voltorb</item>
+        <item>50 Candies - Exeggcute</item>
+        <item>50 Candies - Cubone</item>
+        <item>50 Candies - Koffing</item>
+        <item>50 Candies - Rhyhorn</item>
+        <item>50 Candies - Horsea</item>
+        <item>50 Candies - Goldeen</item>
+        <item>50 Candies - Staryu</item>
+        <item>50 Candies - Omanyte</item>
+        <item>50 Candies - Kabuto</item>
+
+        <item>100 Candies - Ivysaur</item>
+        <item>100 Candies - Charmeleon</item>
+        <item>100 Candies - Wartortle</item>
+        <item>100 Candies - Nidorina</item>
+        <item>100 Candies - Nidorino</item>
+        <item>100 Candies - Gloom</item>
+        <item>100 Candies - Poliwhirl</item>
+        <item>100 Candies - Kadabra</item>
+        <item>100 Candies - Machoke</item>
+        <item>100 Candies - Weepinbell</item>
+        <item>100 Candies - Graveler</item>
+        <item>100 Candies - Haunter</item>
+        <item>100 Candies - Dragonair</item>
+
+        <item>400 Candies - Magikarp</item>
+
     </string-array>
 </resources>

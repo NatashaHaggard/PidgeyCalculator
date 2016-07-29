@@ -30,10 +30,11 @@
 
             <TableRow>
                 <Spinner
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/spinner"
+                    android:layout_weight="2"
                     android:spinnerMode="dropdown"
                     android:paddingBottom="30dp" />
             </TableRow>
