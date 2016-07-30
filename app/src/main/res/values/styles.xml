@@ -10,8 +10,8 @@
     </style>
 
     <style name="SpinnerStyle" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:divider">#d1d1d1</item>
-        <item name="android:dividerHeight">0.5dp</item>
+        <item name="android:divider">#FFAC7D36</item>
+        <item name="android:dividerHeight">1dp</item>
     </style>
 
 </resources>

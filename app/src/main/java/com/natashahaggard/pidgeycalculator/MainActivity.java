@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // Declare variables
     EditText howManyPokemon; // # of pokemon from user input
     EditText howManyCandies; // # of candies from user input
-    TextView evolutionsResult; // Display how many evolutions are possible
+    Integer candiesPerEvolution; // # of candies required per evolution
     Button button_calculate; // Calculate button
     Button button_reset; // Reset button
 
@@ -48,14 +48,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.pokemon_12common, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.pokemon, android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
     }
 
     // Calculate function
-    private void calculate(){
+    private void calculate(Integer candiesPerEvolution){
         try {
             numOfPokemon = Integer.parseInt(howManyPokemon.getText().toString());
             numOfCandies = Integer.parseInt(howManyCandies.getText().toString());
@@ -64,14 +64,36 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             numOfPokemon = 0;
             numOfCandies = 0;
         }
-        numOfEvolutions = numOfPokemon + numOfCandies;
+        numOfEvolutions = candiesPerEvolution;
     }
 
     // You selected such-and-such Pokemon message
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
-        TextView myText= (TextView)view;
-        Toast.makeText(this,"You Selected "+myText.getText(), Toast.LENGTH_SHORT).show();
+        TextView myText= (TextView)view; // create a new TextView object called myText
+        Toast.makeText(this,"You Selected "+myText.getText(), Toast.LENGTH_SHORT).show(); // Display the message in the Toast widget
+
+        int value = spinner.getSelectedItemPosition();
+        if ((value >= 0) && (value <= 2)) {
+            candiesPerEvolution = 12;
+            calculate(candiesPerEvolution);
+        }
+        else if (((value >= 3) && (value <= 5)) || ((value >=9) && (value <=20))) {
+            candiesPerEvolution = 25;
+            calculate(candiesPerEvolution);
+        }
+        else if (((value >= 6) && (value <= 8)) || ((value >=21) && (value <=55))) {
+            candiesPerEvolution = 50;
+            calculate(candiesPerEvolution);
+        }
+        else if ((value >= 56) && (value <= 68)) {
+            candiesPerEvolution = 100;
+            calculate(candiesPerEvolution);
+        }
+        else if (value == 69) {
+            candiesPerEvolution = 400;
+            calculate(candiesPerEvolution);
+        }
     }
 
     // onNothingSelected is called when your current selection disappears due to some event like touch getting activated or the adapter becoming empty
@@ -82,8 +104,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // Display a dialog with calculation results
     public void showAlert(View view) {
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
-        calculate();
-        myAlert.setMessage("Number of Evolutions is " + numOfEvolutions)
+        calculate(candiesPerEvolution);
+        myAlert.setMessage("candies per evolution: " + candiesPerEvolution)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
