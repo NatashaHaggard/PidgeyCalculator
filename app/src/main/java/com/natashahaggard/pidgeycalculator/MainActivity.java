@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             numOfPokemon = 0;
             numOfCandies = 0;
         }
-        numOfEvolutions = candiesPerEvolution;
 
         // Declare and initialize variables
         Integer candiesRequired;
@@ -106,15 +105,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Integer candiesLeftOver = 0;
 
         // Multiply the number of Pokemon by candiesPerEvolution to see how many candies will be required to evolve all the Pokemon
-
         candiesRequired = numOfPokemon * candiesPerEvolution; // # of candies required to evolve all your pidgeys
 
-        if (numOfCandies >= candiesRequired){ // check to see if you have enough candy
-            candiesLeftOver = numOfCandies - candiesRequired; // calculate how many candies you have left over
+        if (numOfCandies >= candiesPerEvolution){ // check to see if you have enough candy
+            if (numOfPokemon < 60){
+                transferPokemon = 60 - numOfPokemon;
+            }
+            evolvePokemon = numOfCandies / candiesPerEvolution;
+            gainXP = evolvePokemon * 1000; // 1000 with Lucky Egg, 500 without
+            howManyMinutes = (evolvePokemon * 30)/60;
+            candiesLeftOver = numOfCandies - (evolvePokemon*candiesPerEvolution);
+            pokemonLeftOver = numOfPokemon - evolvePokemon;
         }
+
         else if (numOfCandies < candiesRequired){
-            int needThisMuchMoreCandy;
-            needThisMuchMoreCandy = Math.abs(numOfCandies-candiesRequired); // get absolute value
+            transferPokemon = Math.abs(numOfCandies-candiesRequired); // get absolute value
         }
 
        Integer[] calculationResults = new Integer[6];
