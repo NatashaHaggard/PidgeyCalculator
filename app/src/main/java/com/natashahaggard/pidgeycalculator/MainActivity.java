@@ -54,18 +54,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    // Calculate function
-    private void calculate(Integer candiesPerEvolution){
-        try {
-            numOfPokemon = Integer.parseInt(howManyPokemon.getText().toString());
-            numOfCandies = Integer.parseInt(howManyCandies.getText().toString());
-        }
-        catch(NumberFormatException e){// if it's empty or non-numeric
-            numOfPokemon = 0;
-            numOfCandies = 0;
-        }
-        numOfEvolutions = candiesPerEvolution;
-    }
 
     // You selected such-and-such Pokemon message
     @Override
@@ -96,6 +84,75 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    // Calculate function
+    private Integer[] calculate(Integer candiesPerEvolution){
+        try {
+            numOfPokemon = Integer.parseInt(howManyPokemon.getText().toString());
+            numOfCandies = Integer.parseInt(howManyCandies.getText().toString());
+        }
+        catch(NumberFormatException e){// if it's empty or non-numeric
+            numOfPokemon = 0;
+            numOfCandies = 0;
+        }
+        numOfEvolutions = candiesPerEvolution;
+
+        // Declare and initialize variables
+        Integer candiesRequired;
+        Integer transferPokemon = 0;
+        Integer evolvePokemon = 0;
+        Integer gainXP = 0;
+        Integer howManyMinutes = 0;
+        Integer pokemonLeftOver = 0;
+        Integer candiesLeftOver = 0;
+
+        // Multiply the number of Pokemon by candiesPerEvolution to see how many candies will be required to evolve all the Pokemon
+
+        candiesRequired = numOfPokemon * candiesPerEvolution; // # of candies required to evolve all your pidgeys
+
+        if (numOfCandies >= candiesRequired){ // check to see if you have enough candy
+            candiesLeftOver = numOfCandies - candiesRequired; // calculate how many candies you have left over
+        }
+        else if (numOfCandies < candiesRequired){
+            int needThisMuchMoreCandy;
+            needThisMuchMoreCandy = Math.abs(numOfCandies-candiesRequired); // get absolute value
+        }
+
+       Integer[] calculationResults = new Integer[6];
+        calculationResults[0] = transferPokemon;
+        calculationResults[1] = evolvePokemon;
+        calculationResults[2] = gainXP;
+        calculationResults[3] = howManyMinutes;
+        calculationResults[4] = pokemonLeftOver;
+        calculationResults[5] = candiesLeftOver;
+
+        return calculationResults;
+    }
+
+    public StringBuilder displayResults(Integer[] calculationResults){
+        StringBuilder displayResults = new StringBuilder();
+        displayResults.append("You should transfer ");
+        displayResults.append(calculationResults[0]); //transferPokemon
+        displayResults.append(" Pokemon before activating your Lucky Egg");
+        displayResults.append("\n\n");
+        displayResults.append("You will be able to evolve ");
+        displayResults.append(calculationResults[1]); //evolvePokemon
+        displayResults.append(" Pokemon, gaining " );
+        displayResults.append(calculationResults[2]); //gainXP
+        displayResults.append(" XP");
+        displayResults.append("\n\n");
+        displayResults.append("On average, it will take ");
+        displayResults.append(calculationResults[3]); //howManyMinutes
+        displayResults.append(" minutes to evolve your Pokemon");
+        displayResults.append("\n\n");
+        displayResults.append("You will have ");
+        displayResults.append(calculationResults[4]); //pokemonLeftOver
+        displayResults.append(" Pokemon and ");
+        displayResults.append(calculationResults[5]); //candiesLeftOver
+        displayResults.append(" candies left over");
+
+        return displayResults;
+    }
+
     // onNothingSelected is called when your current selection disappears due to some event like touch getting activated or the adapter becoming empty
     @Override
     public void onNothingSelected(AdapterView<?> adapterView){
@@ -104,9 +161,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // Display a dialog with calculation results
     public void showAlert(View view) {
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
-        calculate(candiesPerEvolution);
-        myAlert.setMessage("candies per evolution: " + candiesPerEvolution)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        StringBuilder text = displayResults(calculate(candiesPerEvolution));
+        myAlert.setMessage(text.toString())
+                .setPositiveButton("Okay, thanks!", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
