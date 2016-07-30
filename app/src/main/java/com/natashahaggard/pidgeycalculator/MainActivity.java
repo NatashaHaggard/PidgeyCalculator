@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Integer howManyMinutes = 0;
         Integer pokemonLeftOver = 0;
         Integer candiesLeftOver = 0;
+        Integer candiesNeededFor1Evolution = 0;
 
         // Multiply the number of Pokemon by candiesPerEvolution to see how many candies will be required to evolve all the Pokemon
         candiesRequired = numOfPokemon * candiesPerEvolution; // # of candies required to evolve all your pidgeys
@@ -119,7 +120,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
         else if (numOfCandies < candiesRequired){
-            transferPokemon = Math.abs(numOfCandies-candiesRequired); // get absolute value
+            candiesNeededFor1Evolution = Math.abs(numOfCandies-candiesRequired); // get absolute value
+            transferPokemon = (candiesPerEvolution * 59) + candiesNeededFor1Evolution;
+            candiesLeftOver = numOfCandies;
+            pokemonLeftOver = numOfPokemon;
         }
 
        Integer[] calculationResults = new Integer[6];
@@ -135,19 +139,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public StringBuilder displayResults(Integer[] calculationResults){
         StringBuilder displayResults = new StringBuilder();
+        displayResults.append("Recommendation:");
+        displayResults.append("\n");
         displayResults.append("You should transfer ");
         displayResults.append(calculationResults[0]); //transferPokemon
         displayResults.append(" Pokemon before activating your Lucky Egg");
         displayResults.append("\n\n");
-        displayResults.append("You will be able to evolve ");
+        displayResults.append("Right now, you will be able to evolve ");
         displayResults.append(calculationResults[1]); //evolvePokemon
         displayResults.append(" Pokemon, gaining " );
         displayResults.append(calculationResults[2]); //gainXP
-        displayResults.append(" XP");
+        displayResults.append(" XP (with Lucky Egg) ");
+        displayResults.append(" and ");
+        displayResults.append(calculationResults[2] / 2); //gainXP without Lucky Egg
+        displayResults.append(" XP (without Lucky Egg) ");
         displayResults.append("\n\n");
         displayResults.append("On average, it will take ");
         displayResults.append(calculationResults[3]); //howManyMinutes
-        displayResults.append(" minutes to evolve your Pokemon");
+        displayResults.append(" minute(s) to evolve your Pokemon");
         displayResults.append("\n\n");
         displayResults.append("You will have ");
         displayResults.append(calculationResults[4]); //pokemonLeftOver
