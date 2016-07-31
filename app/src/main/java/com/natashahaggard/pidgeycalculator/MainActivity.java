@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private float howManyMinutes(int evolvePokemonNow){
         float howManyMinutes = 0;
         if (evolvePokemonNow != 0) {
-            howManyMinutes = (evolvePokemonNow * 30) / 60;
+            howManyMinutes = ((float)evolvePokemonNow * 30f) / 60f;
         }
         return howManyMinutes;
     }
