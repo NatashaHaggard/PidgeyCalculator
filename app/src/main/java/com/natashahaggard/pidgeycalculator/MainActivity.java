@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // Declare variables
     EditText howManyPokemon; // # of pokemon from user input
     EditText howManyCandies; // # of candies from user input
-    Integer candiesPerEvolution; // # of candies required per evolution
+    int candiesPerEvolution; // # of candies required per evolution
     Button button_calculate; // Calculate button
     Button button_reset; // Reset button
 
@@ -64,28 +64,113 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         int value = spinner.getSelectedItemPosition();
         if ((value >= 0) && (value <= 2)) {
             candiesPerEvolution = 12;
-            calculate(candiesPerEvolution);
+           // calculate();
         }
         else if (((value >= 3) && (value <= 5)) || ((value >=9) && (value <=20))) {
             candiesPerEvolution = 25;
-            calculate(candiesPerEvolution);
+            //calculate();
         }
         else if (((value >= 6) && (value <= 8)) || ((value >=21) && (value <=55))) {
             candiesPerEvolution = 50;
-            calculate(candiesPerEvolution);
+           // calculate();
         }
         else if ((value >= 56) && (value <= 68)) {
             candiesPerEvolution = 100;
-            calculate(candiesPerEvolution);
+           // calculate();
         }
         else if (value == 69) {
             candiesPerEvolution = 400;
-            calculate(candiesPerEvolution);
+           // calculate();
         }
     }
 
+    // You should transfer this many Pokemon before activating your Lucky Egg
+    private int transferPokemon(){
+        int totalCandiesNeeded;
+        int transferPokemonForMoreCandy;
+        totalCandiesNeeded = 60 * candiesPerEvolution;
+        transferPokemonForMoreCandy = totalCandiesNeeded - numOfCandies;
+        if (transferPokemonForMoreCandy < 0){
+            transferPokemonForMoreCandy = 0;
+        }
+        return transferPokemonForMoreCandy;
+    }
+
+    // You should get this many additional Pokemon to evolve before activating your Lucky Egg
+    private int evolveMorePokemon(){
+        int evolveMorePokemon;
+        evolveMorePokemon = 60 - numOfPokemon;
+        if (evolveMorePokemon < 0){
+            evolveMorePokemon = 0;
+        }
+        return evolveMorePokemon;
+    }
+
+    // This is how many Pokemon you can evolve right now
+    private int evolvePokemonNow(){
+        int evolvePokemonNow;
+        evolvePokemonNow = numOfCandies / candiesPerEvolution;
+        if (evolvePokemonNow > numOfPokemon){
+            evolvePokemonNow = numOfPokemon;
+        }
+        if (evolvePokemonNow < 0){
+            evolvePokemonNow = 0;
+        }
+        return evolvePokemonNow;
+    }
+
+    // This is how much XP you will gain
+    private int gainXP(int evolvePokemonNow){
+        int gainXP;
+        gainXP= evolvePokemonNow * 500;
+        return gainXP;
+    }
+
+    // This is how much XP you will gain if you use the Lucky Egg
+    private int gainXP_LuckyEgg(int evolvePokemonNow){
+        int gainXP_LuckyEgg;
+        gainXP_LuckyEgg = evolvePokemonNow * 1000;
+        return gainXP_LuckyEgg;
+    }
+
+    // How much candies will you have left over after doing current evolutions
+    private int candiesLeftOver(int evolvePokemonNow){
+        int candiesLeftOver;
+        candiesLeftOver = numOfCandies - (evolvePokemonNow*candiesPerEvolution);
+        if (candiesLeftOver < 0){
+            candiesLeftOver = 0;
+        }
+        return candiesLeftOver;
+    }
+
+    // How much pokemon will you have left over after doing current evolutions
+    private int pokemonLeftOver(int evolvePokemonNow){
+        int pokemonLeftOver;
+        pokemonLeftOver = numOfPokemon - evolvePokemonNow;
+        if (pokemonLeftOver < 0){
+            pokemonLeftOver = 0;
+        }
+        return pokemonLeftOver;
+    }
+
+    // How many minutes will the current evolutions take
+    private float howManyMinutes(int evolvePokemonNow){
+        float howManyMinutes = 0;
+        if (evolvePokemonNow != 0) {
+            howManyMinutes = (evolvePokemonNow * 30) / 60;
+        }
+        return howManyMinutes;
+    }
+
+    // # of candies required to evolve the amount of Pokemon you currently have
+    private int candiesRequiredForCurrentPokemon(Integer numOfPokemon, Integer candiesPerEvolution){
+        int candiesRequired;
+        candiesRequired = numOfPokemon * candiesPerEvolution;
+        return candiesRequired;
+    }
+
     // Calculate function
-    private Integer[] calculate(Integer candiesPerEvolution){
+    private StringBuilder calculate(){
         try {
             numOfPokemon = Integer.parseInt(howManyPokemon.getText().toString());
             numOfCandies = Integer.parseInt(howManyCandies.getText().toString());
@@ -95,73 +180,59 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             numOfCandies = 0;
         }
 
-        // Declare and initialize variables
-        Integer candiesRequired;
-        Integer transferPokemon = 0;
-        Integer evolvePokemon = 0;
-        Integer gainXP = 0;
-        Integer howManyMinutes = 0;
-        Integer pokemonLeftOver = 0;
-        Integer candiesLeftOver = 0;
-        Integer candiesNeededFor1Evolution = 0;
+        int pokemonCount = evolvePokemonNow();
 
-        // Multiply the number of Pokemon by candiesPerEvolution to see how many candies will be required to evolve all the Pokemon
-        candiesRequired = numOfPokemon * candiesPerEvolution; // # of candies required to evolve all your pidgeys
+        return displayResults(
+        transferPokemon(),
+        evolveMorePokemon(),
+        pokemonCount,
+        gainXP(pokemonCount),
+        gainXP_LuckyEgg(pokemonCount),
+        candiesLeftOver(pokemonCount),
+        pokemonLeftOver(pokemonCount),
+        howManyMinutes(pokemonCount),
+        candiesRequiredForCurrentPokemon(numOfPokemon, pokemonCount));
 
-        if (numOfCandies >= candiesPerEvolution){ // check to see if you have enough candy
-            if (numOfPokemon < 60){
-                transferPokemon = 60 - numOfPokemon;
-            }
-            evolvePokemon = numOfCandies / candiesPerEvolution;
-            gainXP = evolvePokemon * 1000; // 1000 with Lucky Egg, 500 without
-            howManyMinutes = (evolvePokemon * 30)/60;
-            candiesLeftOver = numOfCandies - (evolvePokemon*candiesPerEvolution);
-            pokemonLeftOver = numOfPokemon - evolvePokemon;
-        }
-
-        else if (numOfCandies < candiesRequired){
-            candiesNeededFor1Evolution = Math.abs(numOfCandies-candiesRequired); // get absolute value
-            transferPokemon = (candiesPerEvolution * 59) + candiesNeededFor1Evolution;
-            candiesLeftOver = numOfCandies;
-            pokemonLeftOver = numOfPokemon;
-        }
-
-       Integer[] calculationResults = new Integer[6];
-        calculationResults[0] = transferPokemon;
-        calculationResults[1] = evolvePokemon;
-        calculationResults[2] = gainXP;
-        calculationResults[3] = howManyMinutes;
-        calculationResults[4] = pokemonLeftOver;
-        calculationResults[5] = candiesLeftOver;
-
-        return calculationResults;
     }
 
-    public StringBuilder displayResults(Integer[] calculationResults){
+    public StringBuilder displayResults(int transferPokemon, int evolveMorePokemon, int evolvePokemonNow, int gainXP, int gainXP_LuckyEgg,
+                                        int candiesLeftOver, int pokemonLeftOver, float howManyMinutes, int candiesRequiredForCurrentPokemon){
         StringBuilder displayResults = new StringBuilder();
-        displayResults.append("Recommendation:");
+        displayResults.append("Lucky Egg Recommendation");
         displayResults.append("\n");
-        displayResults.append("You should transfer ");
-        displayResults.append(calculationResults[0]); //transferPokemon
-        displayResults.append(" Pokemon before activating your Lucky Egg");
+
+        displayResults.append("Do not use any Lucky Eggs until you can evolve at least ");
+        displayResults.append(evolveMorePokemon); //transferPokemon
+        displayResults.append(" more Pokemon");
         displayResults.append("\n\n");
+
+        displayResults.append("This will require an additional ");
+        displayResults.append(transferPokemon);
+        displayResults.append(" candies");
+        displayResults.append("\n\n");
+
         displayResults.append("Right now, you will be able to evolve ");
-        displayResults.append(calculationResults[1]); //evolvePokemon
-        displayResults.append(" Pokemon, gaining " );
-        displayResults.append(calculationResults[2]); //gainXP
+        displayResults.append(evolvePokemonNow);
+        displayResults.append(" Pokemon");
+        displayResults.append("\n\n");
+
+        displayResults.append("If you evolve your Pokemon now, you will gain " );
+        displayResults.append(gainXP_LuckyEgg); //gainXP
         displayResults.append(" XP (with Lucky Egg) ");
         displayResults.append(" and ");
-        displayResults.append(calculationResults[2] / 2); //gainXP without Lucky Egg
+        displayResults.append(gainXP); //gainXP without Lucky Egg
         displayResults.append(" XP (without Lucky Egg) ");
         displayResults.append("\n\n");
+
         displayResults.append("On average, it will take ");
-        displayResults.append(calculationResults[3]); //howManyMinutes
+        displayResults.append(howManyMinutes); //howManyMinutes
         displayResults.append(" minute(s) to evolve your Pokemon");
         displayResults.append("\n\n");
+
         displayResults.append("You will have ");
-        displayResults.append(calculationResults[4]); //pokemonLeftOver
+        displayResults.append(pokemonLeftOver); //pokemonLeftOver
         displayResults.append(" Pokemon and ");
-        displayResults.append(calculationResults[5]); //candiesLeftOver
+        displayResults.append(candiesLeftOver); //candiesLeftOver
         displayResults.append(" candies left over");
 
         return displayResults;
@@ -175,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // Display a dialog with calculation results
     public void showAlert(View view) {
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
-        StringBuilder text = displayResults(calculate(candiesPerEvolution));
+        StringBuilder text = calculate();
         myAlert.setMessage(text.toString())
                 .setPositiveButton("Okay, thanks!", new DialogInterface.OnClickListener() {
                     @Override
