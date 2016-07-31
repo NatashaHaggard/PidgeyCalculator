@@ -97,9 +97,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     // You should get this many additional Pokemon to evolve before activating your Lucky Egg
-    private int evolveMorePokemon(){
+    private int evolveMorePokemon(int evolvePokemonNow){
         int evolveMorePokemon;
-        evolveMorePokemon = 60 - numOfPokemon;
+        evolveMorePokemon = 60 - evolvePokemonNow;
         if (evolveMorePokemon < 0){
             evolveMorePokemon = 0;
         }
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     // Calculate function
-    private StringBuilder calculate(){
+    private String calculate(){
         try {
             numOfPokemon = Integer.parseInt(howManyPokemon.getText().toString());
             numOfCandies = Integer.parseInt(howManyCandies.getText().toString());
@@ -178,13 +178,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         catch(NumberFormatException e){// if it's empty or non-numeric
             numOfPokemon = 0;
             numOfCandies = 0;
+            return "Missing data";
         }
 
         int pokemonCount = evolvePokemonNow();
 
         return displayResults(
         transferPokemon(),
-        evolveMorePokemon(),
+        evolveMorePokemon(pokemonCount),
         pokemonCount,
         gainXP(pokemonCount),
         gainXP_LuckyEgg(pokemonCount),
@@ -195,21 +196,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    public StringBuilder displayResults(int transferPokemon, int evolveMorePokemon, int evolvePokemonNow, int gainXP, int gainXP_LuckyEgg,
+    public String displayResults(int transferPokemon, int evolveMorePokemon, int evolvePokemonNow, int gainXP, int gainXP_LuckyEgg,
                                         int candiesLeftOver, int pokemonLeftOver, float howManyMinutes, int candiesRequiredForCurrentPokemon){
         StringBuilder displayResults = new StringBuilder();
         displayResults.append("Lucky Egg Recommendation");
         displayResults.append("\n");
+        if (evolvePokemonNow >= 60){
+            displayResults.append("Do it!");
+            displayResults.append("\n\n");
+        }
+        else{
+            displayResults.append("Do not use any Lucky Eggs until you can evolve at least ");
+            displayResults.append(evolveMorePokemon); //transferPokemon
+            displayResults.append(" more Pokemon");
+            displayResults.append("\n\n");
 
-        displayResults.append("Do not use any Lucky Eggs until you can evolve at least ");
-        displayResults.append(evolveMorePokemon); //transferPokemon
-        displayResults.append(" more Pokemon");
-        displayResults.append("\n\n");
-
-        displayResults.append("This will require an additional ");
-        displayResults.append(transferPokemon);
-        displayResults.append(" candies");
-        displayResults.append("\n\n");
+            displayResults.append("This will require an additional ");
+            displayResults.append(transferPokemon);
+            displayResults.append(" candies");
+            displayResults.append("\n\n");
+        }
 
         displayResults.append("Right now, you will be able to evolve ");
         displayResults.append(evolvePokemonNow);
@@ -235,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         displayResults.append(candiesLeftOver); //candiesLeftOver
         displayResults.append(" candies left over");
 
-        return displayResults;
+        return displayResults.toString();
     }
 
     // onNothingSelected is called when your current selection disappears due to some event like touch getting activated or the adapter becoming empty
@@ -246,8 +252,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // Display a dialog with calculation results
     public void showAlert(View view) {
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
-        StringBuilder text = calculate();
-        myAlert.setMessage(text.toString())
+        String text = calculate();
+        myAlert.setMessage(text)
                 .setPositiveButton("Okay, thanks!", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
